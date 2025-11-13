@@ -13,9 +13,10 @@ import { MenuComponent } from './components/menu/menu.component';
 import { MatIconModule } from '@angular/material/icon';
 import { IndexComponent } from './pages/index/index.component';
 import { ThemesComponent } from './pages/themes/themes.component';
+import { ArticleComponent } from './pages/article/article.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, InscriptionComponent, ConnectionComponent, MenuComponent, IndexComponent, ThemesComponent],
+  declarations: [AppComponent, HomeComponent, InscriptionComponent, ConnectionComponent, MenuComponent, IndexComponent, ThemesComponent, ArticleComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
