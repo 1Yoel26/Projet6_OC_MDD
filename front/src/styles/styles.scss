@@ -1,5 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+    
+ }
 
+body { 
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;  
+    font-family: Roboto, 
+    "Helvetica Neue", 
+    sans-serif; 
+}
+
+button{
+    border-radius: 8px; /* arrondi léger des coins */
+    display: block; 
+    margin: auto;
+}
+
+.boutonBlanc{
+    background-color: white;
+    padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.boutonBlanc:hover{
+    background-color: #7550ec;
+}
+
+h1{
+    text-align: center;
+}
+
+.inputBlanc{
+    border: 1px solid black;
+    background-color: white;
+    display: block;
+    width: 300px;
+    height: 40px;
+    border-radius: 8px; /* arrondi léger des coins */
+}
+
+.boutonViolet{
+    background-color: #7550ec;
+    color: white;
+    border: none;
+    padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.boutonViolet:hover{
+    background-color: #4e359e;
+}

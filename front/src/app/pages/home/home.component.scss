@@ -1,7 +1,13 @@
-.center {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.divAccueil{
+   width: min-content;
+   margin: auto;
+}
+
+.divBoutonAccueil{
+   width: 80%;
+   margin: auto;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: space-around;
 }

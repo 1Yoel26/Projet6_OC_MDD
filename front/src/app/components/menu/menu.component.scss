@@ -1,0 +1,21 @@
+.menuOrdinateur{
+    border: 1px solid black;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.divLienMenuOrdinateur{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 40%;
+
+}
+
+.imageLogoMenu{
+    height: 100px;
+}

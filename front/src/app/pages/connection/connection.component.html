@@ -1,0 +1,22 @@
+<button mat-icon-button (click)="retourArriere()">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+
+<h1>
+    Se connecter
+</h1>
+
+<div class="divConnection">
+    
+    <div class="divFormulaire">
+        <form [formGroup]="formInscription" (ngSubmit)="onSubmit()">
+            <span class="spanTitreForm">Nom d'utilisateur</span><br>
+            <input formControlName="nomUtilisateurOuEmail" class="inputBlanc"><br><br>
+
+            <span class="spanTitreForm">Mot de passe</span><br>
+            <input type="password" formControlName="motDePasse" class="inputBlanc"><br><br>
+            
+            <button class="boutonViolet" type="submit">Se connecter</button>
+        </form>
+    </div>
+</div>

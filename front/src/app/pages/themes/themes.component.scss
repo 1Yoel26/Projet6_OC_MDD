@@ -1,0 +1,21 @@
+.extraitTheme {
+    background-color: #F5F5F5;
+    width: 500px;
+    margin-top: 20px;
+    margin-bottom: 20px;;
+    padding: 5px;
+}
+
+.titreTheme {
+    font-weight: 900;
+}
+
+
+.divDesThemes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+}
