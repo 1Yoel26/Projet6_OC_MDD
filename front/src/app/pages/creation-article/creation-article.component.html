@@ -1,0 +1,27 @@
+<button mat-icon-button (click)="retourArriere()">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+
+<h1>
+    Créer un nouvel article
+</h1>
+
+<div class="divCreationArticle">
+    
+    <div class="divFormulaire">
+        <form [formGroup]="formCreationArticle" (ngSubmit)="onSubmit()">
+           
+            <select  formControlName="theme">
+                <option *ngFor="let theme of themes" [value]="theme">{{ theme }}</option>
+            </select><br><br>
+
+
+            <input formControlName="titre" class="inputViolet" placeholder="Titre de l'article"><br><br>
+
+            
+            <textarea formControlName="contenu" cols="60" rows="10" class="inputViolet" placeholder="Contenu de l'article"></textarea><br><br>
+            
+            <button class="boutonViolet" type="submit">S'inscrire</button>
+        </form>
+    </div>
+</div>

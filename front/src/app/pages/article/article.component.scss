@@ -1,9 +1,51 @@
-.divArticle{
-    border: 1px solid black;
+.divPageArticle{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     width: 80%;
-    
+    margin: auto;
+    margin-top: 30px;
 }
 
-.boutonRetour{
-    
+.divArticle{
+    width: 90%;
+    margin: auto;
+}
+
+.divCommentaire{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.divNomCommentateur{
+    width: 20%;
+}
+
+
+.divContenuCommentaire{
+    width: 70%;
+    background-color:#EEEEEE;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.divForm{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 85%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+textarea{
+    resize: none;
+    border-radius: 10px;
+    padding: 10px;
 }

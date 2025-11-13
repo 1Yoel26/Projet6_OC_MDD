@@ -1,51 +1,116 @@
-<button class="boutonRetour" (click)="retourArriere()">
-  <mat-icon>arrow_back</mat-icon>
-</button>
+<div class="divPageArticle">
 
-<div class="divArticle">
+    <div class="divFlecheRetour">
+        <button mat-icon-button (click)="retourArriere()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
 
-    <h2>Titre de l'article</h2><br><br>
-    <p>
-        <span>
-            Date
-        </span>
+    <div class="divArticle">
 
-        &nbsp; &nbsp; &nbsp;
+        <h2>Titre de l'article</h2><br><br>
+        <p>
+            <span>
+                Date
+            </span>
 
-         <span>
-            Auteur
-        </span>
+            &nbsp; &nbsp; &nbsp;
 
-        &nbsp; &nbsp; &nbsp;
+            <span>
+                Auteur
+            </span>
 
-         <span>
-            Thème
-        </span>
+            &nbsp; &nbsp; &nbsp;
 
-    </p> <br><br>
+            <span>
+                Thème
+            </span>
 
-    <p>
-        Lorem ipsum dolor sit amet consectetur, 
-        adipisicing elit. Facere molestias ea similique 
-        exercitationem nulla voluptates harum inventore 
-        temporibus aut sunt fuga eius deleniti molestiae 
-        voluptatum qui, excepturi porro doloremque laudantium?
+        </p> <br><br>
 
-        Lorem ipsum dolor sit amet consectetur, 
-        adipisicing elit. Facere molestias ea similique 
-        exercitationem nulla voluptates harum inventore 
-        temporibus aut sunt fuga eius deleniti molestiae 
-        voluptatum qui, excepturi porro doloremque laudantium?
+        <p>
+            Lorem ipsum dolor sit amet consectetur, 
+            adipisicing elit. Facere molestias ea similique 
+            exercitationem nulla voluptates harum inventore 
+            temporibus aut sunt fuga eius deleniti molestiae 
+            voluptatum qui, excepturi porro doloremque laudantium?
 
-        Lorem ipsum dolor sit amet consectetur, 
-        adipisicing elit. Facere molestias ea similique 
-        exercitationem nulla voluptates harum inventore 
-        temporibus aut sunt fuga eius deleniti molestiae 
-        voluptatum qui, excepturi porro doloremque laudantium?
-    </p><br><br>
+            Lorem ipsum dolor sit amet consectetur, 
+            adipisicing elit. Facere molestias ea similique 
+            exercitationem nulla voluptates harum inventore 
+            temporibus aut sunt fuga eius deleniti molestiae 
+            voluptatum qui, excepturi porro doloremque laudantium?
 
-    <hr><br><br>
+            Lorem ipsum dolor sit amet consectetur, 
+            adipisicing elit. Facere molestias ea similique 
+            exercitationem nulla voluptates harum inventore 
+            temporibus aut sunt fuga eius deleniti molestiae 
+            voluptatum qui, excepturi porro doloremque laudantium?
+        </p><br><br>
 
-    <h4>Commentaires</h4>
+        <hr><br><br>
+
+        <h4>Commentaires</h4><br><br>
+
+        <div class="divCommentaire">
+
+            <div class="divNomCommentateur">
+                <span>Username</span>
+            </div>
+
+            <div class="divContenuCommentaire">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur, 
+                    adipisicing elit. Facere molestias ea similique 
+                    exercitationem nulla voluptates harum inventore 
+                    temporibus aut sunt fuga eius deleniti molestiae 
+                    voluptatum qui, excepturi porro doloremque laudantium?
+                </p>
+            </div>
+        </div>
+
+
+        
+        <div class="divCommentaire">
+
+            <div class="divNomCommentateur">
+                <span>Username</span>
+            </div>
+
+            <div class="divContenuCommentaire">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur, 
+                    adipisicing elit. Facere molestias ea similique 
+                    exercitationem nulla voluptates harum inventore 
+                    temporibus aut sunt fuga eius deleniti molestiae 
+                    voluptatum qui, excepturi porro doloremque laudantium?
+                </p>
+            </div>
+        </div>
+
+
+
+        
+      
+
+
+        <div class="divForm">
+            <div class="textarea">
+                <textarea id="" cols="90" rows="7" placeholder="Ecrivez ici votre commentaire"></textarea>
+            </div>
+
+            <div class="boutonEnvoisMessage">
+                <button mat-raised-button class="boutonViolet">
+                    <mat-icon>
+                        send
+                    </mat-icon>
+                </button>
+            </div>
+        </div>       
+        
+    </div>
 
 </div>
+
+
+
