@@ -11,17 +11,17 @@
     <div class="divFormulaire">
         <form [formGroup]="formCreationArticle" (ngSubmit)="onSubmit()">
            
-            <select  formControlName="theme">
+            <select  formControlName="theme" class="inputViolet">
+                <option value="">Selectionner un thème</option>
                 <option *ngFor="let theme of themes" [value]="theme">{{ theme }}</option>
             </select><br><br>
 
-
             <input formControlName="titre" class="inputViolet" placeholder="Titre de l'article"><br><br>
-
             
-            <textarea formControlName="contenu" cols="60" rows="10" class="inputViolet" placeholder="Contenu de l'article"></textarea><br><br>
+            <textarea formControlName="contenu" class="inputViolet" placeholder="Contenu de l'article"></textarea><br><br>
             
-            <button class="boutonViolet" type="submit">S'inscrire</button>
+            <button class="boutonViolet" type="submit">Créer</button>
         </form>
     </div>
+    
 </div>

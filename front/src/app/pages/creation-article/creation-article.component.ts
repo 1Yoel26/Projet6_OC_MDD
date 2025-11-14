@@ -9,7 +9,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class CreationArticleComponent implements OnInit {
 
-  themes : string[] = ['Java', 'Python'];
+  themes = [
+    "Java",
+    "Python",
+    "IA"
+  ];
 
   constructor(
     private fb: FormBuilder,
@@ -48,6 +52,7 @@ export class CreationArticleComponent implements OnInit {
 
 
   ngOnInit(): void {
+     
   }
 
   onSubmit(){
