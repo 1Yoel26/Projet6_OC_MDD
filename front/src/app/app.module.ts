@@ -16,6 +16,7 @@ import { ThemesComponent } from './pages/themes/themes.component';
 import { ArticleComponent } from './pages/article/article.component';
 import { CreationArticleComponent } from './pages/creation-article/creation-article.component';
 import { ProfilComponent } from './pages/profil/profil.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, InscriptionComponent, ConnectionComponent, MenuComponent, IndexComponent, ThemesComponent, ArticleComponent, CreationArticleComponent, ProfilComponent],
@@ -26,7 +27,8 @@ import { ProfilComponent } from './pages/profil/profil.component';
     MatButtonModule,
     MatToolbarModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

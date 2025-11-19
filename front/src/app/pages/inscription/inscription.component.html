@@ -11,7 +11,7 @@
     <div class="divFormulaire">
         <form [formGroup]="formInscription" (ngSubmit)="onSubmit()">
             <span class="spanTitreForm">Nom d'utilisateur</span><br>
-            <input formControlName="nomUtilisateur" class="inputBlanc"><br><br>
+            <input formControlName="username" class="inputBlanc"><br><br>
 
             <span class="spanTitreForm">Email</span><br>
             <input formControlName="email" class="inputBlanc"><br><br>
@@ -20,6 +20,14 @@
             <input type="password" formControlName="motDePasse" class="inputBlanc"><br><br>
             
             <button class="boutonViolet" type="submit">S'inscrire</button>
+            
+            <br>
+            <span *ngIf="erreurInscription" class="erreur">
+                {{messageErreur}}
+            </span>
+        
         </form>
+
+        
     </div>
 </div>
