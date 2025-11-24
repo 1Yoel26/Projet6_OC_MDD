@@ -13,7 +13,7 @@
            
             <select  formControlName="theme" class="inputViolet">
                 <option value="">Selectionner un thème</option>
-                <option *ngFor="let theme of themes" [value]="theme">{{ theme }}</option>
+                <option *ngFor="let theme of listThemes" [value]="theme.id">{{ theme.nom }}</option>
             </select><br><br>
 
             <input formControlName="titre" class="inputViolet" placeholder="Titre de l'article"><br><br>

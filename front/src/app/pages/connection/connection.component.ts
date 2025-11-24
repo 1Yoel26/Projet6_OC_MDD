@@ -1,6 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserConnection } from 'src/app/interfaces/userConnection.interface';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-connection',
@@ -9,19 +12,24 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class ConnectionComponent implements OnInit {
 
+  public erreurConnection : boolean = false;
+  public messageErreur: String = "";
+
   constructor(
     private fb: FormBuilder,
-    private location: Location
+    private location: Location,
+    private router: Router,
+    private userService: UserService
   ) { }
 
-   public formInscription = this.fb.group({
+   public formConnection = this.fb.nonNullable.group({
       
-      nomUtilisateurOuEmail: [
+      usernameOuEmail: [
         '',
         [
           Validators.required,
-          Validators.min(3),
-          Validators.max(50)
+          Validators.minLength(3),
+          Validators.maxLength(50)
         ]
       ],
   
@@ -29,8 +37,8 @@ export class ConnectionComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.min(3),
-          Validators.max(40)
+          Validators.minLength(3),
+          Validators.maxLength(40)
         ]
       ]
     });
@@ -39,6 +47,34 @@ export class ConnectionComponent implements OnInit {
   }
 
   onSubmit(){
+    const contenuForm : UserConnection  = this.formConnection.getRawValue();
+
+    if(this.formConnection.valid){
+
+      this.userService.connection(contenuForm).subscribe({
+      
+        next : (reponse)=>{
+          this.erreurConnection = false;
+          this.messageErreur = "";
+
+          // stockage du jwt pour la connection:
+          localStorage.setItem("token", reponse.token);
+
+
+          this.router.navigate(["/index"]);
+        },
+
+        error : ()=>{
+          this.erreurConnection = true;
+          this.messageErreur = "Identifiant ou mot de passe incorrect."
+        }
+    });
+
+    }else{
+      this.erreurConnection = true;
+      this.messageErreur = "Erreur, les infos ne sont pas valides.";
+    }
+
 
   }
 

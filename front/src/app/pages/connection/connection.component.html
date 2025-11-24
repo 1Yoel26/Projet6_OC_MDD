@@ -9,14 +9,20 @@
 <div class="divConnection">
     
     <div class="divFormulaire">
-        <form [formGroup]="formInscription" (ngSubmit)="onSubmit()">
+        <form [formGroup]="formConnection" (ngSubmit)="onSubmit()">
             <span class="spanTitreForm">Nom d'utilisateur</span><br>
-            <input formControlName="nomUtilisateurOuEmail" class="inputBlanc"><br><br>
+            <input formControlName="usernameOuEmail" class="inputBlanc"><br><br>
 
             <span class="spanTitreForm">Mot de passe</span><br>
             <input type="password" formControlName="motDePasse" class="inputBlanc"><br><br>
             
             <button class="boutonViolet" type="submit">Se connecter</button>
+            
+            <br>
+            <span *ngIf="erreurConnection" class="erreur">
+                {{messageErreur}}
+            </span>
         </form>
+        
     </div>
 </div>

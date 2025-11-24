@@ -46,8 +46,8 @@ export class InscriptionComponent implements OnInit {
       '',
       [
         Validators.required,
-        Validators.min(3),
-        Validators.max(40)
+        Validators.minLength(3),
+        Validators.maxLength(40)
       ]
     ]
   });
@@ -59,21 +59,34 @@ export class InscriptionComponent implements OnInit {
   onSubmit(){
     
     const contenuForm: UserInscription = this.formInscription.getRawValue();
-    this.serviceUser.inscription(contenuForm).subscribe({
-      next: (reponse: void) =>{
-        this.router.navigate(["/connection"]);
-      },
+    
+    if(this.formInscription.valid){
+        this.serviceUser.inscription(contenuForm).subscribe({
+        next: (reponse: void) =>{
+          this.router.navigate(["/connection"]);
+        },
 
-      error: (err) =>{
-        this.erreurInscription = true;
-        if(err.status === 400){
-          this.messageErreur = "Erreur de création de compte car cet email est déjà pris."
+        error: (err) =>{
+          this.erreurInscription = true;
+          if(err.status === 400){
+            this.messageErreur = "Erreur de création de compte car cet email est déjà pris."
+          }
+          else if(err.status === 500){
+            this.messageErreur = "Une erreur s'est produite, merci de ré-essayer";
+          }
+
+          else{
+            this.messageErreur = "Une erreur s'est produite, merci de ré-essayer";
+          }
         }
-        else if(err.status === 500){
-          this.messageErreur = "Une erreur s'est produite, merci de ré-essayer";
-        }
-      }
-    });
+      });
+    }else{
+      this.erreurInscription = true;
+      this.messageErreur = "Veuillez saisir tous les champs, avec une valeur correct svp";
+    
+    }
+    
+    
   }
 
   retourArriere(): void{

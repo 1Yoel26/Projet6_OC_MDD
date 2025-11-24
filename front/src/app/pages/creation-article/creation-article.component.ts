@@ -1,6 +1,8 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Theme } from 'src/app/interfaces/theme.interface';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-creation-article',
@@ -9,15 +11,13 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class CreationArticleComponent implements OnInit {
 
-  themes = [
-    "Java",
-    "Python",
-    "IA"
-  ];
+  public listThemes!: Theme[];
+
 
   constructor(
     private fb: FormBuilder,
-    private location: Location
+    private location: Location,
+    private serviceTheme: ThemeService
   ) { }
 
   public formCreationArticle = this.fb.group({
@@ -26,8 +26,8 @@ export class CreationArticleComponent implements OnInit {
       '',
       [
         Validators.required,
-        Validators.min(3),
-        Validators.max(50)
+        Validators.minLength(3),
+        Validators.maxLength(50)
       ]
     ],
 
@@ -35,8 +35,8 @@ export class CreationArticleComponent implements OnInit {
       '',
       [
         Validators.required,
-        Validators.min(3),
-        Validators.max(50)
+        Validators.minLength(3),
+        Validators.maxLength(50)
       ]
     ],
     
@@ -44,15 +44,17 @@ export class CreationArticleComponent implements OnInit {
       '',
       [
         Validators.required,
-        Validators.min(3),
-        Validators.max(1000)
+        Validators.minLength(3),
+        Validators.maxLength(1000)
       ]
     ]
   });
 
 
   ngOnInit(): void {
-     
+     this.serviceTheme.lesThemes().subscribe( (themes : Theme[]) => {
+      this.listThemes = themes;
+    });
   }
 
   onSubmit(){
