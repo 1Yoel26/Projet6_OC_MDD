@@ -16,11 +16,11 @@ export class CreationArticleComponent implements OnInit {
 
   public listThemes!: Theme[];
 
-  private erreurCreationArticle: boolean = false;
-  private messageErreur: string = "";
+  public erreurCreationArticle: boolean = false;
+  public messageErreur: string = "";
 
-  private succesCreationArticle: boolean = false;
-  private messageSucces: string = "";
+  public succesCreationArticle: boolean = false;
+  public messageSucces: string = "";
 
 
   constructor(
@@ -36,8 +36,7 @@ export class CreationArticleComponent implements OnInit {
       '',
       [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(50)
+        Validators.minLength(0)
       ]
     ],
 
@@ -54,8 +53,7 @@ export class CreationArticleComponent implements OnInit {
       '',
       [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(1000)
+        Validators.minLength(3)
       ]
     ]
   });
@@ -82,6 +80,10 @@ export class CreationArticleComponent implements OnInit {
         },
 
         error: ()=>{
+
+          this.succesCreationArticle = false;
+          this.messageSucces = "";
+
           this.erreurCreationArticle = true;
           this.messageErreur = "Erreur lors de la création de l'article";
         }
@@ -89,6 +91,10 @@ export class CreationArticleComponent implements OnInit {
     }
     
     else{
+
+      this.succesCreationArticle = false;
+      this.messageSucces = "";
+
       this.erreurCreationArticle = true;
       this.messageErreur = "Erreur formulaire invalide";
     }
