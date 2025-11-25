@@ -11,7 +11,7 @@
     <div class="divFormulaire">
         <form [formGroup]="formCreationArticle" (ngSubmit)="onSubmit()">
            
-            <select  formControlName="theme" class="inputViolet">
+            <select  formControlName="id_theme" class="inputViolet">
                 <option value="">Selectionner un thème</option>
                 <option *ngFor="let theme of listThemes" [value]="theme.id">{{ theme.nom }}</option>
             </select><br><br>

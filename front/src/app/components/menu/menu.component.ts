@@ -13,4 +13,8 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  public deconnection(){
+    localStorage.removeItem("token");
+  }
+
 }
