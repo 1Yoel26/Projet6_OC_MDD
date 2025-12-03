@@ -6,67 +6,24 @@
         </div>
 
         <div class="divBoutonFiltre">
-            <button class="boutonFiltre" (click)="filtre()">Trier par <mat-icon>arrow_downward</mat-icon> </button>
+            <button class="boutonFiltreAncien boutonFiltre" (click)="filtreAncien()">Les plus anciens <mat-icon>arrow_downward</mat-icon> </button>
+            <button class="boutonFiltreRecent boutonFiltre" (click)="filtreRecent()" style="display: none;">Les plus récents <mat-icon>arrow_downward</mat-icon> </button>
         </div>
 
     </div>
 
     <div class="divDesArticles">
         
-        <div class="extraitArticle">
+        <div (click)="ouvrirUnArticle(unArticle.id)" *ngFor="let unArticle of listeDesArticles" class="extraitArticle">
 
-            <h5 class="titreArticle">Titre</h5>
+            <h5 class="titreArticle">{{ unArticle.titre }}</h5>
             
-            <span>Date</span> &nbsp; &nbsp; &nbsp; <span>Auteur</span>
+            <span>{{ unArticle.date }}</span> &nbsp; &nbsp; &nbsp; <span>{{ unArticle.user.username }}</span>
 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Vel ducimus aliquam ab. Vel tempore atque laboriosam
-                illo quam repellendus maxime magni quasi unde sequi 
-                debitis, eos quisquam iusto placeat dicta.
+            <p class="extraitContenuArticle">
+               {{ unArticle.contenu }}
             </p>
         </div>
 
-
-        <div class="extraitArticle">
-
-            <h5 class="titreArticle">Titre</h5>
-            
-            <span>Date</span> &nbsp; &nbsp; &nbsp; <span>Auteur</span>
-
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Vel ducimus aliquam ab. Vel tempore atque laboriosam
-                illo quam repellendus maxime magni quasi unde sequi 
-                debitis, eos quisquam iusto placeat dicta.
-            </p>
-        </div>
-
-
-
-        <div class="extraitArticle">
-
-            <h5 class="titreArticle">Titre</h5>
-            
-            <span>Date</span> &nbsp; &nbsp; &nbsp; <span>Auteur</span>
-
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Vel ducimus aliquam ab. Vel tempore atque laboriosam
-                illo quam repellendus maxime magni quasi unde sequi 
-                debitis, eos quisquam iusto placeat dicta.
-            </p>
-        </div>
-
-
-        <div class="extraitArticle">
-
-            <h5 class="titreArticle">Titre</h5>
-            
-            <span>Date</span> &nbsp; &nbsp; &nbsp; <span>Auteur</span>
-
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Vel ducimus aliquam ab. Vel tempore atque laboriosam
-                illo quam repellendus maxime magni quasi unde sequi 
-                debitis, eos quisquam iusto placeat dicta.
-            </p>
-        </div>
     </div>
 </div>

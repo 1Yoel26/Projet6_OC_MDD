@@ -6,6 +6,11 @@
     padding: 5px;
 }
 
+.extraitArticle:hover{
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 .titreArticle {
     font-weight: 900;
 }
@@ -43,4 +48,11 @@
     justify-content: space-between;
     width: 80%;
     margin: auto;
+}
+
+.extraitContenuArticle{
+    display: -webkit-box;          /* Nécessaire pour line-clamp */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;        /* Nombre de lignes à afficher */
+    overflow: hidden;
 }

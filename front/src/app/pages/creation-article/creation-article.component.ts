@@ -28,6 +28,7 @@ export class CreationArticleComponent implements OnInit {
     private location: Location,
     private serviceTheme: ThemeService,
     private serviceArticle: ArticleService,
+    private router: Router
   ) { }
 
   public formCreationArticle = this.fb.nonNullable.group({
@@ -77,6 +78,8 @@ export class CreationArticleComponent implements OnInit {
           this.messageErreur = "";
           this.succesCreationArticle = true;
           this.messageSucces = "Article créé avec succès !";
+          this.router.navigate(["/index"]);
+          
         },
 
         error: ()=>{

@@ -6,106 +6,69 @@
         </button>
     </div>
 
-    <div class="divArticle">
+    <h4 *ngIf="erreurArticle" class="erreur">{{messageErreur}}</h4>
 
-        <h2>Titre de l'article</h2><br><br>
+    <div class="divArticle" *ngIf="!erreurArticle">
+
+        <h2>{{unArticle.titre}}</h2><br><br>
         <p>
             <span>
-                Date
+                {{unArticle.date}}
             </span>
 
             &nbsp; &nbsp; &nbsp;
 
             <span>
-                Auteur
+                {{unArticle.user.username}}
             </span>
 
             &nbsp; &nbsp; &nbsp;
 
             <span>
-                Thème
+                {{unArticle.theme.nom}}
             </span>
 
         </p> <br><br>
 
-        <p>
-            Lorem ipsum dolor sit amet consectetur, 
-            adipisicing elit. Facere molestias ea similique 
-            exercitationem nulla voluptates harum inventore 
-            temporibus aut sunt fuga eius deleniti molestiae 
-            voluptatum qui, excepturi porro doloremque laudantium?
-
-            Lorem ipsum dolor sit amet consectetur, 
-            adipisicing elit. Facere molestias ea similique 
-            exercitationem nulla voluptates harum inventore 
-            temporibus aut sunt fuga eius deleniti molestiae 
-            voluptatum qui, excepturi porro doloremque laudantium?
-
-            Lorem ipsum dolor sit amet consectetur, 
-            adipisicing elit. Facere molestias ea similique 
-            exercitationem nulla voluptates harum inventore 
-            temporibus aut sunt fuga eius deleniti molestiae 
-            voluptatum qui, excepturi porro doloremque laudantium?
+        <p class="pContenu">
+            {{unArticle.contenu}}
         </p><br><br>
 
         <hr><br><br>
 
-        <h4>Commentaires</h4><br><br>
+        <h4 *ngIf="listeDesCommentaires.length > 0">Commentaires</h4><br><br>
 
-        <div class="divCommentaire">
+        <h4 *ngIf="listeDesCommentaires.length == 0">Aucun commentaires n'a été posté sur cet article actuellement.</h4><br><br>
+
+        <div class="divCommentaire" *ngFor="let unCommentaire of listeDesCommentaires">
 
             <div class="divNomCommentateur">
-                <span>Username</span>
+                <span>{{unCommentaire.user.username}}</span>
             </div>
 
             <div class="divContenuCommentaire">
                 <p>
-                    Lorem ipsum dolor sit amet consectetur, 
-                    adipisicing elit. Facere molestias ea similique 
-                    exercitationem nulla voluptates harum inventore 
-                    temporibus aut sunt fuga eius deleniti molestiae 
-                    voluptatum qui, excepturi porro doloremque laudantium?
+                    {{unCommentaire.contenu}}
                 </p>
             </div>
-        </div>
-
-
-        
-        <div class="divCommentaire">
-
-            <div class="divNomCommentateur">
-                <span>Username</span>
-            </div>
-
-            <div class="divContenuCommentaire">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur, 
-                    adipisicing elit. Facere molestias ea similique 
-                    exercitationem nulla voluptates harum inventore 
-                    temporibus aut sunt fuga eius deleniti molestiae 
-                    voluptatum qui, excepturi porro doloremque laudantium?
-                </p>
-            </div>
-        </div>
-
-
-
-        
-      
+        </div>      
 
 
         <div class="divForm">
-            <div class="textarea">
-                <textarea id="" cols="90" rows="7" placeholder="Ecrivez ici votre commentaire"></textarea>
-            </div>
+            <form [formGroup]="formCreationCommentaire" (ngSubmit)="onSubmit()">
+         
+                <div class="textarea">
+                    <textarea id="" cols="90" rows="7" placeholder="Ecrivez ici votre commentaire"></textarea>
+                </div>
 
-            <div class="boutonEnvoisMessage">
-                <button mat-raised-button class="boutonViolet">
-                    <mat-icon>
-                        send
-                    </mat-icon>
-                </button>
-            </div>
+                <div class="boutonEnvoisMessage">
+                    <button mat-raised-button class="boutonViolet">
+                        <mat-icon>
+                            send
+                        </mat-icon>
+                    </button>
+                </div>
+            </form>
         </div>       
         
     </div>
