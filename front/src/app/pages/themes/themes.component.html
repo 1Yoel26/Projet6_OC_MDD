@@ -2,77 +2,16 @@
     
     <div class="divDesThemes">
         
-        <div class="extraitTheme">
+        <div *ngFor="let unTheme of listeDesThemes" class="extraitTheme">
 
-            <h5 class="titreTheme">Titre du thème</h5>
+            <h5 class="titreTheme">{{unTheme.nom}}</h5>
             
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Vel ducimus aliquam ab. Vel tempore atque laboriosam
-                illo quam repellendus maxime magni quasi unde sequi 
-                debitis, eos quisquam iusto placeat dicta.
+            <p>
+                {{unTheme.description}}
             </p>
 
             <button class="boutonViolet">S'abonner</button>
         </div>
-
-
-        <div class="extraitTheme">
-
-            <h5 class="titreTheme">Titre du thème</h5>
-            
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Vel ducimus aliquam ab. Vel tempore atque laboriosam
-                illo quam repellendus maxime magni quasi unde sequi 
-                debitis, eos quisquam iusto placeat dicta.
-            </p>
-
-            <button class="boutonViolet">S'abonner</button>
-        </div>
-
-
-
-        <div class="extraitTheme">
-
-            <h5 class="titreTheme">Titre du thème</h5>
-            
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Vel ducimus aliquam ab. Vel tempore atque laboriosam
-                illo quam repellendus maxime magni quasi unde sequi 
-                debitis, eos quisquam iusto placeat dicta.
-            </p>
-
-            <button class="boutonViolet">S'abonner</button>
-        </div>
-
-
-        <div class="extraitTheme">
-
-            <h5 class="titreTheme">Titre du thème</h5>
-            
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Vel ducimus aliquam ab. Vel tempore atque laboriosam
-                illo quam repellendus maxime magni quasi unde sequi 
-                debitis, eos quisquam iusto placeat dicta.
-            </p>
-
-            <button class="boutonViolet">S'abonner</button>
-        </div>
-
-
-
-        <div class="extraitTheme">
-
-            <h5 class="titreTheme">Titre du thème</h5>
-            
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Vel ducimus aliquam ab. Vel tempore atque laboriosam
-                illo quam repellendus maxime magni quasi unde sequi 
-                debitis, eos quisquam iusto placeat dicta.
-            </p>
-
-            <button class="boutonViolet">S'abonner</button>
-        </div>
-
 
         
     </div>

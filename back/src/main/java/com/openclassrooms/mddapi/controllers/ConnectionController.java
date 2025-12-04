@@ -53,7 +53,7 @@ public class ConnectionController {
 		// en cas d'echec de connection car id ou mdp incorrect:
 		catch (BadCredentialsException e) {
 			
-			return ResponseEntity.status(400).build();
+			return ResponseEntity.status(400).body(e.getMessage());
 		}
 		
 		

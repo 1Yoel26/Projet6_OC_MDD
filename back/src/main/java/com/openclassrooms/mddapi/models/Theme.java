@@ -18,5 +18,7 @@ public class Theme {
 	private Long id;
 	
 	private String nom;
+	
+	private String description;
 
 }

@@ -33,19 +33,17 @@ public class FiltreJwtHttp extends OncePerRequestFilter{
 		
 		String headerAutorisation = request.getHeader("Authorization");
 		
-		System.out.println(headerAutorisation);
 		
 		if(headerAutorisation != null && headerAutorisation.startsWith("Bearer")) {
 			
 			String jwtRecuperer = headerAutorisation.substring(7);
 			
-			System.out.println(" affichage du jwt: " + headerAutorisation);
-			
 			// si le jwt récuperer dans la requete http est validé:
 			if(jwtValiderUtil.validationJwt(jwtRecuperer) != null) {
 				
+				System.out.println("Voici le JWT : " + jwtRecuperer);
+				
 				String emailUser = jwtValiderUtil.validationJwt(jwtRecuperer);
-				System.out.println(emailUser);
 				
 				UserDetails userDetails = userDetailsService.loadUserByUsername(emailUser);
 				

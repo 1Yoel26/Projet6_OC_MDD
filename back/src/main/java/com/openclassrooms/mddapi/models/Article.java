@@ -1,5 +1,8 @@
 package com.openclassrooms.mddapi.models;
 
+import java.sql.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +33,9 @@ public class Article {
 	private String titre;
 
 	private String contenu;
+	
+	@Column(name = "date", insertable = false, updatable = false)
+	private Date date;
 	
 
 }

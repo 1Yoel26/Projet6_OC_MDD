@@ -53,12 +53,15 @@
             </div>
         </div>      
 
+        <h4 class="erreur" *ngIf="erreurCreationCommentaire">
+            {{messageErreurCreationCommentaire}}
+        </h4>
 
-        <div class="divForm">
-            <form [formGroup]="formCreationCommentaire" (ngSubmit)="onSubmit()">
+        <div>
+            <form [formGroup]="formGroupCreationCommentaire" (ngSubmit)="onSubmit()" class="divForm">
          
                 <div class="textarea">
-                    <textarea id="" cols="90" rows="7" placeholder="Ecrivez ici votre commentaire"></textarea>
+                    <textarea formControlName="contenu" id="" cols="90" rows="7" placeholder="Ecrivez ici votre commentaire"></textarea>
                 </div>
 
                 <div class="boutonEnvoisMessage">

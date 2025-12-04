@@ -38,6 +38,7 @@ public class JwtValiderUtil {
 			.getBody()
 			.getSubject();
 			
+			
 		} 
 		
 		// en cas de token non validé, indiquer l'erreur du jwt:

@@ -1,8 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ArticleComplet } from 'src/app/interfaces/articleComplet.interface';
 import { Commentaire } from 'src/app/interfaces/commentaire.interface';
+import { CommentaireCreation } from 'src/app/interfaces/commentaireCreation.interface';
 import { ArticleService } from 'src/app/services/article.service';
 import { CommentaireService } from 'src/app/services/commentaire.service';
 
@@ -18,19 +21,32 @@ export class ArticleComponent implements OnInit {
   public messageErreur: string = "";
   public listeDesCommentaires!: Commentaire[];
 
+  public erreurCreationCommentaire: boolean = false;
+  public messageErreurCreationCommentaire: string = "";
+
+  private idArticleNumber!: number;
+  private contenuCommentaireCreation!: CommentaireCreation;
+
   constructor(
     private location: Location,
+    private fb: FormBuilder,
     private routerActived: ActivatedRoute,
     private serviceArticle: ArticleService,
     private serviceCommentaire: CommentaireService
   ) { }
 
+  public formGroupCreationCommentaire = this.fb.nonNullable.group({
+    contenu : this.fb.nonNullable.control<string>("", 
+      Validators.required
+    )
+  });
+
   ngOnInit(): void {
     const idArticle : string | null = this.routerActived.snapshot.paramMap.get("id");
 
-    const idArticleNumber = Number(idArticle);
+    this.idArticleNumber = Number(idArticle);
     
-    this.serviceArticle.article(idArticleNumber).subscribe({
+    this.serviceArticle.article(this.idArticleNumber).subscribe({
       next:(reponseObs : ArticleComplet) =>{
         this.erreurArticle = false;
         this.unArticle = reponseObs;
@@ -43,7 +59,7 @@ export class ArticleComponent implements OnInit {
     });
 
 
-    this.serviceCommentaire.listeDesCommentaires(idArticleNumber).subscribe({
+    this.serviceCommentaire.listeDesCommentaires(this.idArticleNumber).subscribe({
       next: (reponseObs: Commentaire[]) =>{
         this.listeDesCommentaires = reponseObs;
       },
@@ -54,9 +70,51 @@ export class ArticleComponent implements OnInit {
     });
   }
 
-  
+  onSubmit(){
 
-   retourArriere(): void{
-    this.location.back();
+    const contenuForm = this.formGroupCreationCommentaire.getRawValue();
+    
+    if(this.formGroupCreationCommentaire.valid){
+
+      this.erreurCreationCommentaire = false;
+      this.messageErreurCreationCommentaire = "";
+
+      this.contenuCommentaireCreation = {
+        idArticle: this.idArticleNumber,
+        contenu: contenuForm.contenu
+      };
+
+      this.serviceCommentaire.creationCommentaire(this.contenuCommentaireCreation).subscribe({
+        next:()=>{
+          this.erreurCreationCommentaire = false;
+          this.messageErreurCreationCommentaire = "";
+
+          // rappel du service listeDesCommentaires pour raffraichir la liste avec le nouveau commentaire créé:
+          this.serviceCommentaire.listeDesCommentaires(this.idArticleNumber).subscribe({
+            next: (responseObs: Commentaire[])=>{
+              this.listeDesCommentaires = responseObs;
+              this.formGroupCreationCommentaire.reset();
+            }
+          });
+          
+        },
+
+        error: (erreur: Error)=>{
+          this.erreurCreationCommentaire = true;
+          this.messageErreurCreationCommentaire = "Une erreur s'est produite lors de l'enregistrement de votre commentaire." + erreur.message;
+        }
+      });
+
+    }
+    else{
+      this.erreurCreationCommentaire = true;
+      this.messageErreurCreationCommentaire = "Formulaire invalide car le commentaire est vide.";
   }
+
+}
+
+retourArriere(): void{
+    this.location.back();
+}
+
 }

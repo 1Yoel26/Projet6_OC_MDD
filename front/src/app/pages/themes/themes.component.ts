@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Theme } from 'src/app/interfaces/theme.interface';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-themes',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThemesComponent implements OnInit {
 
-  constructor() { }
+  public listeDesThemes!: Theme[];
+
+  constructor(private serviceTheme: ThemeService) { }
 
   ngOnInit(): void {
+
+    this.serviceTheme.lesThemes().subscribe({
+      next:(reponseObs: Theme[])=>{
+        this.listeDesThemes = reponseObs;
+      }
+    });
   }
 
 }

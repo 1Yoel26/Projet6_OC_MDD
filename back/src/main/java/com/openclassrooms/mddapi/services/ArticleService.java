@@ -75,9 +75,15 @@ public class ArticleService {
 	
 	
 	
-	public List<Article> listeDesArticles() {
+	public List<Article> listeDesArticlesRecent() {
 		
-		return articleRepository.findAll();
+		return articleRepository.findAllByOrderByDateDesc();
+		
+	}
+	
+	public List<Article> listeDesArticlesAncien() {
+			
+		return articleRepository.findAllByOrderByDateAsc();
 		
 	}
 	
@@ -106,7 +112,7 @@ public class ArticleService {
 	}
 	
 	
-public List<Article> listeDesArticlesAbonneTrieDuMoinsRecent(){
+	public List<Article> listeDesArticlesAbonneTrieDuMoinsRecent(){
 		
 		// Récupérer l'utilisateur connecté
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -128,6 +134,13 @@ public List<Article> listeDesArticlesAbonneTrieDuMoinsRecent(){
 
         // 3️ Récupérer tous les articles dont le thème correspond
         return articleRepository.findByThemeIdInOrderByDateDesc(listeDesIdsDesThemesAbonne);
+	}
+	
+	public Article unArticleComplet(Long idArticle) {
+		
+		return articleRepository.findById(idArticle)
+				.orElse(null);
+		
 	}
 
 }

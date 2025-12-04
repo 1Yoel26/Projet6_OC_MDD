@@ -14,7 +14,6 @@ public class ThemeService {
 	@Autowired
 	private ThemeRepository themeRepository;
 	
-	
 	public List<Theme> listeDesIdThemes(){
 		
 		return themeRepository.findAll();
