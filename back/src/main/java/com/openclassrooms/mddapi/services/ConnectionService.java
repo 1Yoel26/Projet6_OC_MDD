@@ -45,5 +45,6 @@ public class ConnectionService implements UserDetailsService {
 		
 		return userDetails;
 	}
+	
 
 }

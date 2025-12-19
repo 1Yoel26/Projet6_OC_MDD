@@ -1,7 +1,8 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserConnection } from 'src/app/interfaces/userConnection.interface';
 import { UserService } from 'src/app/services/user.service';
 
@@ -13,13 +14,18 @@ import { UserService } from 'src/app/services/user.service';
 export class ConnectionComponent implements OnInit {
 
   public erreurConnection : boolean = false;
+  public ecranMobile!: boolean;
   public messageErreur: String = "";
+  public titre : string = "Se connecter";
+  public afficherImgMobile: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private location: Location,
     private router: Router,
-    private userService: UserService
+    private routerActivate: ActivatedRoute,
+    private userService: UserService,
+    private breakpointObserver: BreakpointObserver
   ) { }
 
    public formConnection = this.fb.nonNullable.group({
@@ -44,6 +50,29 @@ export class ConnectionComponent implements OnInit {
     });
 
   ngOnInit(): void {
+
+    // test si la taille de l'ecran est celle d'un smartphone:
+     // verification si la taille est bien un smartphone
+        this.breakpointObserver
+          .observe([Breakpoints.Handset])
+          .subscribe(result => {
+              this.ecranMobile = result.matches;
+          });
+
+    if(this.ecranMobile){
+      this.afficherImgMobile = true;
+    }
+
+    // si l'utilisateur vient de modifier son profil, 
+    // changement du nom du titre de la page afin de lui
+    // expliquer pourquoi il est redirigé vers la page de connection après avoir modifié son profil :
+    
+    let parametreUrlModifProfil: string | null = this.routerActivate.snapshot.paramMap.get("profilModifie");
+    
+    if(parametreUrlModifProfil != null){
+      this.titre = "Votre profil à bien été mis à jour, veuillez vous reconnectez svp"
+    }
+
   }
 
   onSubmit(){

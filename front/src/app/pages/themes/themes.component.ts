@@ -11,6 +11,8 @@ export class ThemesComponent implements OnInit {
 
   public listeDesThemes!: Theme[];
 
+  public listeDesIdDesThemesAbonne!: number[];
+
   constructor(private serviceTheme: ThemeService) { }
 
   ngOnInit(): void {
@@ -18,6 +20,27 @@ export class ThemesComponent implements OnInit {
     this.serviceTheme.lesThemes().subscribe({
       next:(reponseObs: Theme[])=>{
         this.listeDesThemes = reponseObs;
+      }
+    });
+
+    this.serviceTheme.lesIdThemesAbonne().subscribe({
+      next:(reponseObs: number[])=>{
+        this.listeDesIdDesThemesAbonne = reponseObs;
+      }
+    });
+  }
+
+  abonnement(idTheme: number){
+    this.serviceTheme.abonnement(idTheme).subscribe({
+      next: ()=>{
+
+        // s'il s'est bien abonné on recharge les id des themes abonné:
+        this.serviceTheme.lesIdThemesAbonne().subscribe({
+          next:(reponseObs: number[])=>{
+            this.listeDesIdDesThemesAbonne = reponseObs;
+          }
+        });
+
       }
     });
   }

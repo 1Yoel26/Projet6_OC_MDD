@@ -6,12 +6,14 @@
 
             <h5 class="titreTheme">{{unTheme.nom}}</h5>
             
-            <p>
+            <p class="pContenuDescription">
                 {{unTheme.description}}
             </p>
 
-            <button class="boutonViolet">S'abonner</button>
-        </div>
+            <button *ngIf="!listeDesIdDesThemesAbonne.includes(unTheme.id)" class="boutonViolet" (click)="abonnement(unTheme.id)">S'abonner</button>
+            <button *ngIf="listeDesIdDesThemesAbonne.includes(unTheme.id)" class="boutonGris" [disabled]="true">Déjà abonné</button>
+         
+        </div> 
 
         
     </div>

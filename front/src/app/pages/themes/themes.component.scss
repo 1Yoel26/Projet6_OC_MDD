@@ -19,3 +19,11 @@
     width: 80%;
     margin: auto;
 }
+
+
+.pContenuDescription{
+    display: -webkit-box;          /* Nécessaire pour line-clamp */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;        /* Nombre de lignes à afficher */
+    overflow: hidden;
+}

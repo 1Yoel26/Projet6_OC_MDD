@@ -14,15 +14,18 @@ public class InscriptionService {
 	@Autowired
 	private InscriptionRepository inscriptionRepository;
 	
-	@Autowired PasswordEncoder passwordEncoder;
+	@Autowired 
+	PasswordEncoder passwordEncoder;
 	
 	public boolean inscriptionCompte(UserInscriptionDto infoUser) {
 		
 		boolean emailDejaPris = inscriptionRepository.existsByEmail(infoUser.getEmail());
 		
+		boolean usernameDejaPris = inscriptionRepository.existsByUsername(infoUser.getUsername());
+		
 		// si le mail est déjà utilisé par un autre compte:
-		if(emailDejaPris == true) {
-			return false; // ne crée pas le compte car email indisponible
+		if(emailDejaPris == true || usernameDejaPris == true) {
+			return false; // ne crée pas le compte car l'email ou l'username sont indisponible
 		}
 		
 		User userComplet = new User();

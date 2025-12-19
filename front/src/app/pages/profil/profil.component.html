@@ -14,6 +14,10 @@
             <input formControlName="motDePasse" class="inputViolet" placeholder="Mot de passe"><br><br>
             
             <button class="boutonViolet" type="submit">Sauvegarder</button>
+       
+            <br>
+            <span class="erreur">{{messageReponseModifProfil}}</span>
+       
         </form>
     </div>
 </div>
@@ -24,78 +28,27 @@
 
 <h1>
     Abonnements
+
+    {{messageAucunAbonnement}}
 </h1>
+
+ 
+
 
 <div class="divAbonnement">
 
-    <div class="theme">
-        <h3>Titre du thème</h3><br>
+    <div *ngFor="let unAbonnement of listeDesThemesAbonne" class="theme">
+        <h3>{{unAbonnement.theme.nom}}</h3><br>
 
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Dolore quae aperiam cupiditate. Mollitia
-            nam dolor voluptatem consequatur quibusdam,
-            exercitationem magnam quos molestias, 
-            temporibus deserunt sit tempora at sed 
-            ipsam ratione.
+            {{unAbonnement.theme.description}}
         </p><br><br>
 
-        <button class="boutonViolet">Se désabonner</button>
+        <button class="boutonViolet" (click)="desabonner(unAbonnement.theme.id)">Se désabonner</button>
+
+        <br><br>
+        
 
     </div>
-
-
-    <div class="theme">
-        <h4>Titre du thème</h4><br>
-
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Dolore quae aperiam cupiditate. Mollitia
-            nam dolor voluptatem consequatur quibusdam,
-            exercitationem magnam quos molestias, 
-            temporibus deserunt sit tempora at sed 
-            ipsam ratione.
-        </p><br><br>
-
-        <button class="boutonViolet">Se désabonner</button>
-
-    </div>
-
-
-    <div class="theme">
-        <h3>Titre du thème</h3><br>
-
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Dolore quae aperiam cupiditate. Mollitia
-            nam dolor voluptatem consequatur quibusdam,
-            exercitationem magnam quos molestias, 
-            temporibus deserunt sit tempora at sed 
-            ipsam ratione.
-        </p><br><br>
-
-        <button class="boutonViolet">Se désabonner</button>
-
-    </div>
-
-
-
-
-    <div class="theme">
-        <h3>Titre du thème</h3><br>
-
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Dolore quae aperiam cupiditate. Mollitia
-            nam dolor voluptatem consequatur quibusdam,
-            exercitationem magnam quos molestias, 
-            temporibus deserunt sit tempora at sed 
-            ipsam ratione.
-        </p><br><br>
-
-        <button class="boutonViolet">Se désabonner</button>
-
-    </div>
-
 
 </div>

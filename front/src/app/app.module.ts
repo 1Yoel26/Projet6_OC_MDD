@@ -18,6 +18,7 @@ import { CreationArticleComponent } from './pages/creation-article/creation-arti
 import { ProfilComponent } from './pages/profil/profil.component';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, InscriptionComponent, ConnectionComponent, MenuComponent, IndexComponent, ThemesComponent, ArticleComponent, CreationArticleComponent, ProfilComponent],
@@ -29,7 +30,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     MatToolbarModule,
     ReactiveFormsModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSidenavModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}

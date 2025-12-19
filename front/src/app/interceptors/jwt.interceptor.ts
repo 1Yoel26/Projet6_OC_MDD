@@ -3,9 +3,10 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -22,7 +23,17 @@ export class JwtInterceptor implements HttpInterceptor {
         headers : request.headers.set("Authorization", `Bearer ${token}`)
       });
 
-      return next.handle(requeteClone);
+      return next.handle(requeteClone).pipe(
+        catchError((erreur: HttpErrorResponse)=>{
+          if(erreur.status === 401){
+            // Si le jwt est invalide, le supprimer du LocalStorage:
+          localStorage.removeItem('token');
+
+          }
+
+          return throwError(() => erreur);
+        })
+      );
     }
 
     return next.handle(request);

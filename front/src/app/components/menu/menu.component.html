@@ -1,11 +1,14 @@
-<div class="menuOrdinateur">
+<div *ngIf="afficheLeMenu" [ngClass]="{
+    'menuOrdinateur': !ecranMobile,
+    'menuMobile': ecranMobile
+}">
     <div class="divLogoMenuOrdinateur">
         <a routerLink="/index">
             <img src="assets/logo_p6.png" alt="Profil" class="imageLogoMenu">
         </a>
         </div>
 
-    <nav class="divLienMenuOrdinateur">
+    <nav class="divLienMenuOrdinateur" *ngIf="afficheLesLiens">
 
         <div>
             <a class="lienDeconnection" (click)="deconnection()" routerLink="">Se deconnecter</a>
@@ -21,12 +24,44 @@
 
         <div class="divLogoMenuOrdinateur">
             <a routerLink="/profil">
-                <img src="assets/logo_p6.png" alt="Profil" class="imageLogoMenu">
+                <mat-icon style="color: darkgrey;">account_circle</mat-icon>
             </a>
         </div>
         
     </nav>
 
-    
-    
+    <button *ngIf="ecranMobile" mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+
 </div>
+
+
+<!-- menu mobile -->
+
+<mat-sidenav-container class="sidenav-container" *ngIf="ecranMobile">
+  
+  <!-- menu mobile -->
+  <mat-sidenav #sidenav mode="over" position="end" [opened]="false">
+    <nav class="menu-mobile">
+
+        <a class="lienDeconnection" (click)="deconnection(); sidenav.close()">Déconnexion</a>
+        <a routerLink="/index" (click)="sidenav.close()">Articles</a>
+        <a routerLink="/themes" (click)="sidenav.close()">Thèmes</a>
+        
+        <div style="height: 350px;">
+        </div>
+        
+        <a routerLink="/profil" (click)="sidenav.close()">
+            <mat-icon style="color: darkgrey;">account_circle</mat-icon>
+        </a>
+      
+    </nav>
+  </mat-sidenav>
+
+  <!-- contenu principal -->
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

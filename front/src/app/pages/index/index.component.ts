@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from 'src/app/interfaces/article.interface';
 import { ArticleComplet } from 'src/app/interfaces/articleComplet.interface';
 import { ArticleService } from 'src/app/services/article.service';
@@ -17,7 +17,6 @@ export class IndexComponent implements OnInit {
     private serviceArticle: ArticleService,
     private router: Router
   ) { }
-
 
   ngOnInit(): void {
 

@@ -7,6 +7,15 @@
     align-items: center;
 }
 
+.menuMobile{
+    border: 1px solid black;
+    width: 99%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .divLienMenuOrdinateur{
     display: flex;
     flex-direction: row;
@@ -32,4 +41,33 @@ a{
 
 .lienClassique{
     color: #000000;
+}
+
+
+// css pour menu mobile :
+
+.sidenav-container {
+  height: 100vh;
+}
+
+.menu-mobile {
+  width: 200px; /* largeur du menu */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-mobile a {
+  margin-bottom: 15px;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  height: 60px;
+  border-bottom: 1px solid #ccc;
 }

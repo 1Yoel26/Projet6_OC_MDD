@@ -9,4 +9,5 @@ import com.openclassrooms.mddapi.models.User;
 public interface InscriptionRepository extends JpaRepository<User, Long> {
 
 	boolean existsByEmail(String email);
+	boolean existsByUsername(String username);
 }

@@ -32,6 +32,12 @@ const routes: Routes = [
     canActivate: [UnauthGuard]
   },
 
+  {
+    path: 'connection/:profilModifie',
+    component: ConnectionComponent,
+    canActivate: [UnauthGuard]
+  },
+
   { 
     path: 'index', 
     component: IndexComponent, 
