@@ -19,6 +19,20 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.openclassrooms.mddapi.utils.JwtGenererUtils;
 import com.openclassrooms.mddapi.utils.JwtValiderUtil;
 
+
+/**
+ * Filtre HTTP qui intercepte chaque requête pour valider le JWT.
+ * 
+ * <p>Fonctions principales :</p>
+ * <ul>
+ *   <li>Récupérer le token JWT depuis le header "Authorization"</li>
+ *   <li>Valider le JWT</li>
+ *   <li>Si valide, authentifier l'utilisateur dans Spring Security</li>
+ *   <li>En cas de JWT invalide, renvoyer une réponse 401 Unauthorized</li>
+ * </ul>
+ * 
+ * <p>Ce filtre est exécuté une seule fois par requête.</p>
+ */
 @Component
 public class FiltreJwtHttp extends OncePerRequestFilter{
 	

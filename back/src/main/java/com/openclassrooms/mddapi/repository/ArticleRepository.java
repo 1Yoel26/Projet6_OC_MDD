@@ -14,8 +14,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long>{
 	// trier par moins recent pour tous les articles
 	public List<Article> findAllByOrderByDateAsc();
 	
-	
-	
 	// trier par plus recent pour les articles abonnés
 	public List<Article> findByThemeIdInOrderByDateAsc(List<Long> listeDesIdsDesThemes);
 	

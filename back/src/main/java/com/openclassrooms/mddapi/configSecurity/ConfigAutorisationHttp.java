@@ -15,6 +15,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 
+/**
+ * Cette classe permet de configurer la sécurité des routes Http, dont:
+ * - Ajouter le filtreJwt pour valider le token jwt à chaque requete Http
+ * - Configurer quelles routes Http sont autorisés sans authentification (comme la page de connection à son compte par exemple)
+ * - Configurer les autorisations sur les routes Http comme par exemples l'accès autorisé depuis : http://localhost:4200 pour permettre à angular d'accéder à l'API
+ */
+
 @Configuration
 @EnableMethodSecurity
 public class ConfigAutorisationHttp {
@@ -22,6 +29,24 @@ public class ConfigAutorisationHttp {
 	@Autowired
 	private FiltreJwtHttp filtreJwtHttp;
 	
+	
+	/**
+	 * Configure la sécurité HTTP de l'application.
+	 * 
+	 * Cette configuration inclut :
+	 * 
+	 * <ul>
+	 *   <li>La gestion du CORS pour autoriser les requêtes depuis Angular (http://localhost:4200)</li>
+	 *   <li>La session en mode stateless (JWT)</li>
+	 *   <li>Les endpoints publics autorisés sans authentification</li>
+	 *   <li>L'ajout du filtre JWT pour valider les tokens sur chaque requête</li>
+	 * </ul>
+	 * 
+	 *
+	 * @param http l'objet HttpSecurity fourni par Spring pour configurer la sécurité HTTP
+	 * @return SecurityFilterChain configuré selon les règles définies
+	 * @throws Exception si une erreur survient lors de la configuration de la sécurité HTTP
+	 */
 	// Config d'autorisations pour les requetes Http vers le back:
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -52,6 +77,17 @@ public class ConfigAutorisationHttp {
 	    return http.build();
     }
     
+    /**
+     * Fournit un AuthenticationManager pour gérer l'authentification des utilisateurs.
+     * 
+     * Cet AuthenticationManager est utilisé par Spring Security pour authentifier
+     * les utilisateurs via les filtres configurés dans l'application.
+     * 
+     *
+     * @param authConfig configuration d'authentification Spring
+     * @return AuthenticationManager prêt à être utilisé pour l'authentification
+     * @throws Exception si la récupération de l'AuthenticationManager échoue
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
     	
@@ -59,7 +95,13 @@ public class ConfigAutorisationHttp {
     	
     }
     
-    
+    /**
+     * Fournit un PasswordEncoder pour encoder les mots de passe des utilisateurs.
+     * 
+     * Ici, BCrypt est utilisé pour sécuriser les mots de passe stockés en base de données.
+     * 
+     * @return PasswordEncoder utilisant l'algorithme BCrypt
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
     	return new BCryptPasswordEncoder();
