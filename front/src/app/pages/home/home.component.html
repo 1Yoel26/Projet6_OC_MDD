@@ -1,15 +1,24 @@
+
+<br><br>
 <div class="divAccueil">
 
   <!-- Logo -->
-  <img class = "imageAccueil" src="/assets/logo_p6.png" alt="logo" />
+  <img [ngClass]="{
+    'imageAccueil': !ecranMobile,
+    'imageAccueilMobile': ecranMobile
+  }" class= "imageAccueil" src="/assets/logo_p6.png" alt="logo" />
 
   <!-- Boutons -->
-  <div class="divBoutonAccueil">
+  <div [ngClass]="{
+    'divBoutonAccueil' : !ecranMobile,
+    'divBoutonAccueilMobile' : ecranMobile
+  }">
 
     <button class="boutonBlanc" routerLink="/connection">
       Se connecter
     </button>
-
+    
+    
     <button class="boutonBlanc" routerLink="/inscription">
       S'inscrire
     </button>

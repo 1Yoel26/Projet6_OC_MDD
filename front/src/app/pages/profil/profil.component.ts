@@ -1,3 +1,4 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,11 +16,14 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfilComponent implements OnInit {
 
+  public ecranMobile!: boolean; 
+
   constructor(
     private fb: FormBuilder,
     private serviceTheme: ThemeService,
     private serviceUser: UserService,
-    private router: Router
+    private router: Router,
+    private breakpointObserver: BreakpointObserver
   ) {
 
   }
@@ -63,6 +67,14 @@ export class ProfilComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    // test si la taille de l'ecran est celle d'un smartphone:
+    // verification si la taille est bien un smartphone
+    this.breakpointObserver
+              .observe([Breakpoints.Handset])
+              .subscribe(result => {
+                  this.ecranMobile = result.matches;
+              });
 
     this.serviceTheme.lesThemesAbonne().subscribe({
       next : (reponseObs: Abonnement[])=>{

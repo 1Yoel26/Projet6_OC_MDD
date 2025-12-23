@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 80%;
+    width: 90%;
     margin: auto;
     margin-top: 30px;
 }
@@ -16,7 +16,18 @@
 
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.divCommentaireMobile{
+
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: end;
     width: 90%;
     margin: auto;
     margin-bottom: 30px;
@@ -28,7 +39,7 @@
 
 
 .divContenuCommentaire{
-    width: 70%;
+    width: 80%;
     background-color:#EEEEEE;
     padding: 30px;
     border-radius: 12px;
@@ -40,17 +51,44 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    width: 85%;
+    width: 100%;
     margin: auto;
     margin-top: 50px;
 }
 
-textarea{
+.divFormMobile{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.textarea{
     resize: none;
     border-radius: 10px;
     padding: 10px;
+    width: 900px;
+    height: 120px;
+}
+
+.textareaMobile{
+    resize: none;
+    border-radius: 10px;
+    padding: 10px;
+    width: 95%;
+    height: 70px;
 }
 
 .pContenu{
     white-space: pre-line;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.titreArticleMobile{
+    font-size: 1.1em;
+    font-weight: bold;  
 }

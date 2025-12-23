@@ -1,3 +1,4 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -26,13 +27,15 @@ export class ArticleComponent implements OnInit {
 
   private idArticleNumber!: number;
   private contenuCommentaireCreation!: CommentaireCreation;
+  public ecranMobile!: boolean;
 
   constructor(
     private location: Location,
     private fb: FormBuilder,
     private routerActived: ActivatedRoute,
     private serviceArticle: ArticleService,
-    private serviceCommentaire: CommentaireService
+    private serviceCommentaire: CommentaireService,
+    private breakpointObserver: BreakpointObserver
   ) { }
 
   public formGroupCreationCommentaire = this.fb.nonNullable.group({
@@ -42,6 +45,16 @@ export class ArticleComponent implements OnInit {
   });
 
   ngOnInit(): void {
+
+    // test si la taille de l'ecran est celle d'un smartphone:
+    // verification si la taille est bien un smartphone
+    this.breakpointObserver
+              .observe([Breakpoints.Handset])
+              .subscribe(result => {
+                  this.ecranMobile = result.matches;
+              });
+
+
     const idArticle : string | null = this.routerActived.snapshot.paramMap.get("id");
 
     this.idArticleNumber = Number(idArticle);

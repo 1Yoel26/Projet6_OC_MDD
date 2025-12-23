@@ -1,16 +1,25 @@
 <div class="divPageArticle">
 
-    <div class="divFlecheRetour">
+    <div *ngIf="!ecranMobile" class="divFlecheRetour">
         <button mat-icon-button (click)="retourArriere()">
             <mat-icon>arrow_back</mat-icon>
         </button>
     </div>
 
     <h4 *ngIf="erreurArticle" class="erreur">{{messageErreur}}</h4>
-
+    
     <div class="divArticle" *ngIf="!erreurArticle">
 
-        <h2>{{unArticle.titre}}</h2><br><br>
+        <div *ngIf="ecranMobile" class="divFlecheRetour">
+            <button mat-icon-button (click)="retourArriere()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+
+            <span class="titreArticleMobile">{{unArticle.titre}}</span>
+        </div>
+
+        <h2 *ngIf="!ecranMobile">{{unArticle.titre}}</h2>
+        <br><br>
         <p>
             <span>
                 {{unArticle.date}}
@@ -24,6 +33,9 @@
 
             &nbsp; &nbsp; &nbsp;
 
+            <br *ngIf="ecranMobile">
+            <br *ngIf="ecranMobile">
+
             <span>
                 {{unArticle.theme.nom}}
             </span>
@@ -36,11 +48,14 @@
 
         <hr><br><br>
 
-        <h4 *ngIf="listeDesCommentaires.length > 0">Commentaires</h4><br><br>
+        <h4 *ngIf="listeDesCommentaires.length > 0">Commentaires</h4><br *ngIf="!ecranMobile">
 
-        <h4 *ngIf="listeDesCommentaires.length == 0">Aucun commentaires n'a été posté sur cet article actuellement.</h4><br><br>
+        <h4 *ngIf="listeDesCommentaires.length == 0">Aucun commentaires n'a été posté sur cet article actuellement.</h4> <br *ngIf="!ecranMobile">
 
-        <div class="divCommentaire" *ngFor="let unCommentaire of listeDesCommentaires">
+        <div [ngClass]="{
+            'divCommentaire': !ecranMobile,
+            'divCommentaireMobile': ecranMobile
+        }" *ngFor="let unCommentaire of listeDesCommentaires">
 
             <div class="divNomCommentateur">
                 <span>{{unCommentaire.user.username}}</span>
@@ -58,10 +73,16 @@
         </h4>
 
         <div>
-            <form [formGroup]="formGroupCreationCommentaire" (ngSubmit)="onSubmit()" class="divForm">
+            <form [formGroup]="formGroupCreationCommentaire" (ngSubmit)="onSubmit()" [ngClass]="{
+                'divForm': !ecranMobile,
+                'divFormMobile': ecranMobile
+            }">
          
-                <div class="textarea">
-                    <textarea formControlName="contenu" id="" cols="90" rows="7" placeholder="Ecrivez ici votre commentaire"></textarea>
+                <div>
+                    <textarea [ngClass]="{
+                'textarea': !ecranMobile,
+                'textareaMobile': ecranMobile
+            }" formControlName="contenu" id="" placeholder="Ecrivez ici votre commentaire"></textarea>
                 </div>
 
                 <div class="boutonEnvoisMessage">

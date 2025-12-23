@@ -1,3 +1,4 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from 'src/app/interfaces/article.interface';
@@ -12,13 +13,22 @@ import { ArticleService } from 'src/app/services/article.service';
 export class IndexComponent implements OnInit {
 
   public listeDesArticles!: ArticleComplet[];
+  public ecranMobile!: boolean;
 
   constructor(
     private serviceArticle: ArticleService,
-    private router: Router
+    private router: Router,
+    private breakpointObserver: BreakpointObserver
   ) { }
 
   ngOnInit(): void {
+
+    // verification si la taille est bien un smartphone
+        this.breakpointObserver
+          .observe([Breakpoints.Handset])
+          .subscribe(result => {
+              this.ecranMobile = result.matches;
+          });
 
     // par defaut on affiche les articles dont l'utilisateur est abonné,
     // trié par ordre du plus récent au moins récent :

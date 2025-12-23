@@ -19,3 +19,16 @@
    flex-wrap: wrap;
    justify-content: space-around;
 }
+
+.divBoutonAccueilMobile{
+   width: 80%;
+   height: 200px;
+   margin: auto;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+}
+
+.imageAccueilMobile{
+  width: 300px;
+}

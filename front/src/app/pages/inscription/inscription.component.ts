@@ -108,7 +108,7 @@ export class InscriptionComponent implements OnInit {
       const motDePasseEstValider = this.formInscription.get("motDePasse");
 
       if(emailEstValider?.invalid){
-        this.messageErreur = "Erreur d'inscription car l'email invalide";
+        this.messageErreur = "Erreur d'inscription car l'email est invalide";
       }
 
       else if(motDePasseEstValider?.invalid){

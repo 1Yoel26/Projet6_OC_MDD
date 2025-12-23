@@ -1,5 +1,8 @@
 <div class="divIndex">
-    <div class="divFiltre">
+    <div [ngClass]="{
+        'divFiltre': !ecranMobile,
+        'divFiltreMobile': ecranMobile
+    }">
 
         <div>
             <button class="boutonViolet" routerLink="/creationArticle">Créer un article</button>

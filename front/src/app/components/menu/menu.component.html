@@ -45,7 +45,7 @@
   <mat-sidenav #sidenav mode="over" position="end" [opened]="false">
     <nav class="menu-mobile">
 
-        <a class="lienDeconnection" (click)="deconnection(); sidenav.close()">Déconnexion</a>
+        <a class="lienDeconnection" (click)="deconnection(); sidenav.close()" routerLink="">Déconnexion</a>
         <a routerLink="/index" (click)="sidenav.close()">Articles</a>
         <a routerLink="/themes" (click)="sidenav.close()">Thèmes</a>
         

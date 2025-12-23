@@ -37,7 +37,10 @@
 
 <div class="divAbonnement">
 
-    <div *ngFor="let unAbonnement of listeDesThemesAbonne" class="theme">
+    <div *ngFor="let unAbonnement of listeDesThemesAbonne" [ngClass]="{
+        'theme': !ecranMobile,
+        'themeMobile': ecranMobile
+    }">
         <h3>{{unAbonnement.theme.nom}}</h3><br>
 
         <p>
