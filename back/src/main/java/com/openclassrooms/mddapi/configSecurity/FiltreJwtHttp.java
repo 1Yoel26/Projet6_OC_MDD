@@ -57,7 +57,6 @@ public class FiltreJwtHttp extends OncePerRequestFilter{
 				// si le jwt récuperer dans la requete http est validé:
 				if(jwtValiderUtil.validationJwt(jwtRecuperer) != null) {
 					
-					System.out.println("Voici le JWT : " + jwtRecuperer);
 					
 					String emailUser = jwtValiderUtil.validationJwt(jwtRecuperer);
 					

@@ -13,6 +13,18 @@ import com.openclassrooms.mddapi.dto.UserInfoDto;
 import com.openclassrooms.mddapi.dto.UserInscriptionDto;
 import com.openclassrooms.mddapi.services.UserService;
 
+/**
+ * Contrôleur REST chargé de la gestion des informations utilisateur.
+ * <p>
+ * Ce contrôleur permet :
+ * <ul>
+ *   <li>La récupération des informations de l'utilisateur connecté</li>
+ *   <li>La modification du profil de l'utilisateur connecté</li>
+ * </ul>
+ * <p>
+ * Toute la logique métier liée à l'utilisateur
+ * est déléguée au {@link UserService}.
+ */
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -21,6 +33,11 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	 /**
+     * Récupère les informations de l'utilisateur actuellement connecté.
+     *
+     * @return les informations de l'utilisateur connecté
+     */
 	@GetMapping("/infoUserConnecte")
 	public UserInfoDto infoUserConnecte() {
 		
@@ -28,7 +45,16 @@ public class UserController {
 		
 	}
 	
-	
+	/**
+     * Modifie les informations du profil de l'utilisateur connecté.
+     * <p>
+     * Cette opération permet de mettre à jour l'email,
+     * le nom d'utilisateur et le mot de passe.
+     *
+     * @param infoModifProfil nouvelles informations du profil utilisateur
+     * @return HTTP 200 si la modification est réussie,
+     *         HTTP 400 si l'email est déjà utilisé par un autre utilisateur
+     */
 	@PutMapping("/modificationInfoUserConnecte")
 	public ResponseEntity<?> modificationProfil(@RequestBody UserInscriptionDto infoModifProfil){
 		

@@ -20,6 +20,20 @@ import com.openclassrooms.mddapi.repository.ArticleRepository;
 import com.openclassrooms.mddapi.repository.ThemeRepository;
 import com.openclassrooms.mddapi.repository.UserRepository;
 
+/**
+ * Service chargé de la gestion des articles.
+ * <p>
+ * Ce service centralise toute la logique métier liée aux articles :
+ * <ul>
+ *   <li>Création d'un article</li>
+ *   <li>Récupération des articles avec différents tris</li>
+ *   <li>Récupération des articles en fonction des abonnements de l'utilisateur</li>
+ *   <li>Consultation d'un article complet</li>
+ * </ul>
+ * <p>
+ * Il interagit avec les repositories et s'appuie sur le contexte de sécurité
+ * pour identifier l'utilisateur connecté.
+ */
 @Service
 public class ArticleService {
 	
@@ -35,6 +49,19 @@ public class ArticleService {
 	@Autowired
 	private UserRepository userRepository;
 	
+	/**
+     * Crée un nouvel article à partir des informations fournies.
+     * <p>
+     * L'article est automatiquement associé :
+     * <ul>
+     *   <li>au thème sélectionné</li>
+     *   <li>à l'utilisateur actuellement connecté</li>
+     * </ul>
+     *
+     * @param infoArticle données nécessaires à la création de l'article
+     * @return {@code true} si la création est réussie,
+     *         {@code false} si le thème n'existe pas
+     */
 	public boolean creation(ArticleCreationDto infoArticle) {
 		
 		Article articleACreer = new Article();
@@ -74,19 +101,36 @@ public class ArticleService {
 	
 	
 	
-	
+	 /**
+     * Récupère la liste de tous les articles triés du plus récent au plus ancien.
+     *
+     * @return liste des articles triés par date décroissante
+     */
 	public List<Article> listeDesArticlesRecent() {
 		
 		return articleRepository.findAllByOrderByDateDesc();
 		
 	}
 	
+	
+	 /**
+     * Récupère la liste de tous les articles triés du plus ancien au plus récent.
+     *
+     * @return liste des articles triés par date croissante
+     */
 	public List<Article> listeDesArticlesAncien() {
 			
 		return articleRepository.findAllByOrderByDateAsc();
 		
 	}
 	
+	
+	/**
+     * Récupère la liste des articles correspondant aux thèmes
+     * auxquels l'utilisateur est abonné, triés du plus récent au plus ancien.
+     *
+     * @return liste des articles abonnés triés par date décroissante
+     */
 	public List<Article> listeDesArticlesAbonneTrieDuPlusRecent(){
 		
 		// Récupérer l'utilisateur connecté
@@ -112,7 +156,12 @@ public class ArticleService {
 	}
 	
 	
-	
+	/**
+     * Récupère la liste des articles correspondant aux thèmes
+     * auxquels l'utilisateur est abonné, triés du plus ancien au plus récent.
+     *
+     * @return liste des articles abonnés triés par date croissante
+     */
 	public List<Article> listeDesArticlesAbonneTrieDuMoinsRecent(){
 		
 		// Récupérer l'utilisateur connecté
@@ -137,6 +186,13 @@ public class ArticleService {
         return articleRepository.findByThemeIdInOrderByDateDesc(listeDesIdsDesThemesAbonne);
 	}
 	
+	
+	 /**
+     * Récupère un article complet à partir de son identifiant.
+     *
+     * @param idArticle identifiant de l'article
+     * @return l'article s'il existe, {@code null} sinon
+     */
 	public Article unArticleComplet(Long idArticle) {
 		
 		return articleRepository.findById(idArticle)

@@ -9,12 +9,36 @@ import org.springframework.stereotype.Service;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.repository.ConnectionRepository;
 
+/**
+ * Service chargé de la gestion de la connexion des utilisateurs.
+ * <p>
+ * Ce service implémente {@link UserDetailsService} pour Spring Security,
+ * permettant l'authentification via email ou username.
+ * Il fournit les informations nécessaires à Spring Security pour
+ * valider les identifiants et les rôles des utilisateurs.
+ */
 @Service
 public class ConnectionService implements UserDetailsService {
 	
 	@Autowired
 	private ConnectionRepository connectionRepository;
 
+	
+	/**
+     * Charge un utilisateur (pour pouvoir vérifier ensuite dans le ConnectionController si l'identifiant et le mot de passe sont corrects) à partir de son email ou de son username.
+     * <p>
+     * La méthode effectue les étapes suivantes :
+     * <ul>
+     *   <li>Recherche l'utilisateur par email</li>
+     *   <li>Si non trouvé, recherche l'utilisateur par username</li>
+     *   <li>Si toujours non trouvé, lance une exception {@link UsernameNotFoundException}</li>
+     *   <li>Si trouvé, retourne un {@link UserDetails} contenant l'email, le mot de passe et les rôles</li>
+     * </ul>
+     *
+     * @param username email ou username de l'utilisateur
+     * @return {@link UserDetails} utilisé par Spring Security pour l'authentification
+     * @throws UsernameNotFoundException si l'utilisateur n'existe pas
+     */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		

@@ -14,6 +14,15 @@ import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import com.openclassrooms.mddapi.utils.JwtGenererUtils;
 
+/**
+ * Service gérant les informations et la modification du profil utilisateur.
+ * 
+ * Ce service permet :
+ * <ul>
+ *   <li>Récupérer les informations de l'utilisateur connecté</li>
+ *   <li>Modifier les informations du profil (email, username, mot de passe)</li>
+ * </ul>
+ */
 @Service
 public class UserService {
 	
@@ -27,6 +36,12 @@ public class UserService {
 	@Autowired
 	private JwtGenererUtils jwtGenererUtils;
 	
+	
+	/**
+     * Récupère les informations de l'utilisateur actuellement connecté.
+     *
+     * @return un objet {@link UserInfoDto} contenant le username et l'email
+     */
 	public UserInfoDto infoDuUser() {
 		
 		User userConnecte;
@@ -46,6 +61,16 @@ public class UserService {
 		return userInfoDto;
 	}
 	
+	
+	/**
+     * Modifie le profil de l'utilisateur connecté.
+     * 
+     * Vérifie que le nouvel email et le nouveau username ne sont pas déjà utilisés par un autre utilisateur.
+     * Si un nouveau mot de passe est fourni, il est encodé avant d'être enregistré.
+     *
+     * @param infoUser informations mises à jour de l'utilisateur
+     * @return true si la modification a été effectuée avec succès, false si l'email ou le username sont déjà pris
+     */
 	public boolean modificationDuProfil(UserInscriptionDto infoUser) {
 		
 		

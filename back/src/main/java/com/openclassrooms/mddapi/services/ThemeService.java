@@ -20,6 +20,16 @@ import com.openclassrooms.mddapi.repository.AbonnementRepository;
 import com.openclassrooms.mddapi.repository.ThemeRepository;
 import com.openclassrooms.mddapi.repository.UserRepository;
 
+/**
+ * Service gérant les thèmes et les abonnements des utilisateurs.
+ * 
+ * Ce service permet :
+ * <ul>
+ *   <li>Récupérer la liste de tous les thèmes disponibles</li>
+ *   <li>Récupérer la liste des thèmes auxquels l'utilisateur connecté est abonné</li>
+ *   <li>Abonner ou désabonner l'utilisateur connecté à un thème</li>
+ * </ul>
+ */
 @Service
 public class ThemeService {
 	
@@ -32,13 +42,23 @@ public class ThemeService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	
+	/**
+     * Récupère tous les thèmes disponibles.
+     *
+     * @return liste des thèmes
+     */
 	public List<Theme> listeDesThemes(){
 		
 		return themeRepository.findAll();
 		
 	}
 	
+	
+	/**
+     * Récupère les IDs des thèmes auxquels l'utilisateur connecté est abonné.
+     *
+     * @return liste des IDs de thèmes abonnés
+     */
 	public List<Long> listeDesIdThemesAbonne(){
 		
 		User userConnecte = new User();
@@ -62,7 +82,11 @@ public class ThemeService {
 	}
 	
 	
-	
+	/**
+     * Récupère les abonnements complets de l'utilisateur connecté.
+     *
+     * @return liste des abonnements
+     */
 	public List<Abonnement> listeDesThemesAbonne(){
 		
 		User userConnecte = new User();
@@ -83,6 +107,14 @@ public class ThemeService {
 	}
 	
 	
+	/**
+     * Abonne l'utilisateur connecté à un thème.
+     * 
+     * Vérifie d'abord si l'utilisateur n'est pas déjà abonné.
+     *
+     * @param idTheme identifiant du thème
+     * @return true si l'abonnement a été créé, false si déjà abonné
+     */
 	public boolean abonnerAUnTheme(Long idTheme) {
 		
 		User userConnecte = new User();
@@ -102,7 +134,7 @@ public class ThemeService {
 				.map(elt -> elt.getTheme().getId())
 				.collect(Collectors.toList());
 		
-		// si l'utilisateur est déja abonné a cet article (peu probable 
+		// si l'utilisateur est déja abonné a cet article (peu probable, mais au cas où)
 		if(listeDesIdDeThemeAbonne.contains(idTheme)) {
 			return false;
 		}
@@ -133,6 +165,14 @@ public class ThemeService {
 	}
 	
 	
+	/**
+     * Désabonne l'utilisateur connecté d'un thème.
+     * 
+     * Vérifie d'abord si l'utilisateur est bien abonné à ce thème.
+     *
+     * @param idTheme identifiant du thème
+     * @return true si le désabonnement a été effectué, false si l'utilisateur n'était pas abonné
+     */
 	public boolean desabonnerAUnTheme(Long idTheme) {
 		
 		User userConnecte = new User();

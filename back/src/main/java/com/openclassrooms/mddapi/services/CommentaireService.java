@@ -16,6 +16,18 @@ import com.openclassrooms.mddapi.repository.ArticleRepository;
 import com.openclassrooms.mddapi.repository.CommentaireRepository;
 import com.openclassrooms.mddapi.repository.UserRepository;
 
+/**
+ * Service chargé de la gestion des commentaires.
+ * <p>
+ * Ce service contient la logique métier liée aux commentaires :
+ * <ul>
+ *   <li>Création d'un commentaire sur un article</li>
+ *   <li>Récupération des commentaires associés à un article</li>
+ * </ul>
+ * <p>
+ * Il s'appuie sur le contexte de sécurité pour identifier l'utilisateur connecté
+ * et sur les repositories pour l'accès aux données.
+ */
 @Service
 public class CommentaireService {
 	
@@ -28,6 +40,19 @@ public class CommentaireService {
 	@Autowired
 	private ArticleRepository articleRepository;
 	
+	/**
+     * Crée un nouveau commentaire sur un article.
+     * <p>
+     * Le commentaire est automatiquement associé :
+     * <ul>
+     *   <li>à l'utilisateur actuellement connecté</li>
+     *   <li>à l'article concerné</li>
+     * </ul>
+     *
+     * @param infoCommentaire données nécessaires à la création du commentaire
+     * @return {@code true} si la création est réussie,
+     *         {@code false} si l'article n'existe pas ou en cas d'échec
+     */
 	public boolean creationCommentaire(CommentaireCreationDto infoCommentaire) {
 		
 		Commentaire unCommentaire = new Commentaire();
@@ -68,6 +93,12 @@ public class CommentaireService {
 	}
 	   
 	
+	 /**
+     * Récupère la liste des commentaires associés à un article.
+     *
+     * @param idArticle identifiant de l'article
+     * @return liste des commentaires liés à l'article
+     */
 	public List<Commentaire> listeDesCommentairesSurCetArticle(Long idArticle){
 		
 		List<Commentaire> listeDesCommentaires = commentaireRepository.findByArticleId(idArticle);
